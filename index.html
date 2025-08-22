@@ -1,33 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Dashboard</title>
-    <link rel="icon" href="icon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Electronics Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-
-
-    <!-- Top Navigation -->
-    <nav class="navbar">
-        <div class="flex-align-gap">
-            <button class="navbar-toggle" id="sidebarToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="navbar-brand">Dashboard</div>
-        </div>
-
+    <div class="navbar">
+        <div class="navbar-brand">Electronics Dashboard</div>
+        <button class="navbar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="navbar-right">
             <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon"></i>
             </div>
-
             <div class="user-menu" id="userMenu">
                 <div class="user-avatar" id="userAvatar">S</div>
                 <div class="flex-column-start">
@@ -35,170 +26,107 @@
                     <span class="user-role" id="userRole">Administrator</span>
                 </div>
                 <i class="fas fa-chevron-down user-chevron"></i>
-
-
-
-                <!-- Profile Dropdown -->
                 <div class="profile-dropdown" id="profileDropdown">
                     <div class="profile-item" data-name="Suriya" data-initial="S" data-role="Administrator">
-                        <span class="profile-initial">S</span>
+                        <div class="profile-initial">S</div>
                         <span class="profile-name">Suriya</span>
                     </div>
-                    <div class="profile-item" data-name="Logan" data-initial="L" data-role="Editor">
-                        <span class="profile-initial">L</span>
+                    <div class="profile-item" data-name="Logan" data-initial="L" data-role="Manager">
+                        <div class="profile-initial">L</div>
                         <span class="profile-name">Logan</span>
                     </div>
-                    <div class="profile-item" data-name="Peter" data-initial="P" data-role="Manager">
-                        <span class="profile-initial">P</span>
+                    <div class="profile-item" data-name="Peter" data-initial="P" data-role="Staff">
+                        <div class="profile-initial">P</div>
                         <span class="profile-name">Peter</span>
                     </div>
-                    <div class="profile-item" data-name="Tony" data-initial="T" data-role="Analyst">
-                        <span class="profile-initial">T</span>
+                    <div class="profile-item" data-name="Tony" data-initial="T" data-role="Staff">
+                        <div class="profile-initial">T</div>
                         <span class="profile-name">Tony</span>
                     </div>
                 </div>
-
             </div>
         </div>
-    </nav>
-
-
-
-    <!-- Sidebar and Main Content remain unchanged -->
-    <aside class="sidebar" id="sidebar">
-        <nav class="sidebar-menu">
-            <a href="#" class="menu-item active">
-                <i class="fas fa-home"></i>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="#" class="menu-item active" onclick="loadPage('dashboard')">
+                <i class="fas fa-tachometer-alt"></i>
                 <span class="menu-text">Dashboard</span>
             </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-chart-bar"></i>
+            <a href="#" class="menu-item" onclick="loadPage('analytics')">
+                <i class="fas fa-chart-line"></i>
                 <span class="menu-text">Analytics</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" onclick="loadPage('users')">
                 <i class="fas fa-users"></i>
                 <span class="menu-text">Users</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" onclick="loadPage('orders')">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="menu-text">Orders</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" onclick="loadPage('products')">
                 <i class="fas fa-box"></i>
                 <span class="menu-text">Products</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" onclick="loadPage('payments')">
                 <i class="fas fa-credit-card"></i>
                 <span class="menu-text">Payments</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" onclick="loadPage('settings')">
                 <i class="fas fa-cog"></i>
                 <span class="menu-text">Settings</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item" onclick="loadPage('help')">
                 <i class="fas fa-question-circle"></i>
                 <span class="menu-text">Help</span>
             </a>
-        </nav>
-    </aside>
-
-
-
-    <main class="main-content" id="mainContent">
+        </div>
+    </div>
+    <div class="main-content" id="mainContent">
         <div class="page-header">
             <h1 class="page-title">Welcome back, Suriya!</h1>
-            <p class="page-subtitle">Here's what's happening with your business today.</p>
+            <div class="page-subtitle">Here's what's happening with your business today.</div>
         </div>
-
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-title">Total Revenue</span>
-                    <div class="stat-icon blue">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
+                    <div class="stat-title">Total Revenue</div>
+                    <div class="stat-icon blue"><i class="fas fa-dollar-sign"></i></div>
                 </div>
                 <div class="stat-value">$45,231</div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>+12% from last month</span>
-                </div>
+                <div class="stat-change positive">+12% from last month</div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-title">New Customers</span>
-                    <div class="stat-icon green">
-                        <i class="fas fa-users"></i>
-                    </div>
+                    <div class="stat-title">New Customers</div>
+                    <div class="stat-icon green"><i class="fas fa-users"></i></div>
                 </div>
                 <div class="stat-value">1,234</div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>+8% from last month</span>
-                </div>
+                <div class="stat-change positive">+8% from last month</div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-title">Orders</span>
-                    <div class="stat-icon purple">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
+                    <div class="stat-title">Orders</div>
+                    <div class="stat-icon purple"><i class="fas fa-shopping-cart"></i></div>
                 </div>
                 <div class="stat-value">856</div>
-                <div class="stat-change negative">
-                    <i class="fas fa-arrow-down"></i>
-                    <span>-3% from last month</span>
-                </div>
+                <div class="stat-change negative">-3% from last month</div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-title">Conversion Rate</span>
-                    <div class="stat-icon orange">
-                        <i class="fas fa-percentage"></i>
-                    </div>
+                    <div class="stat-title">Conversion Rate</div>
+                    <div class="stat-icon orange"><i class="fas fa-percentage"></i></div>
                 </div>
                 <div class="stat-value">3.24%</div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>+0.5% from last month</span>
-                </div>
+                <div class="stat-change positive">+0.5% from last month</div>
             </div>
         </div>
-
         <div class="content-grid">
             <div class="chart-container">
                 <h2>Revenue by Month</h2>
-                <div class="bar-chart">
-                    <div class="bar-item">
-                        <div class="bar jan">
-                            <span class="bar-value">$35K</span>
-                        </div>
-                        <span class="bar-label">Jan</span>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar feb">
-                            <span class="bar-value">$45K</span>
-                        </div>
-                        <span class="bar-label">Feb</span>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar mar">
-                            <span class="bar-value">$28K</span>
-                        </div>
-                        <span class="bar-label">Mar</span>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar apr">
-                            <span class="bar-value">$32K</span>
-                        </div>
-                        <span class="bar-label">Apr</span>
-                    </div>
-                </div>
+                <canvas id="revenueChart"></canvas>
             </div>
-
             <div class="content-card">
                 <div class="card-header">
                     <h3 class="card-title">Recent Activity</h3>
@@ -227,40 +155,37 @@
                     </div>
                 </div>
             </div>
-
-            <div class="analytics-card">
-                <div class="analytics-header">
-                    <h3 class="analytics-title">User Analytics</h3>
-                    <select class="analytics-period">
-                        <option>Last 30 days</option>
-                        <option>Last 7 days</option>
-                        <option>Last 90 days</option>
-                    </select>
+        </div>
+        <div class="analytics-card">
+            <div class="analytics-header">
+                <h3 class="analytics-title">User Analytics</h3>
+                <select class="analytics-period">
+                    <option>Last 30 days</option>
+                    <option>Last 7 days</option>
+                    <option>Last 90 days</option>
+                </select>
+            </div>
+            <div class="user-stats-grid">
+                <div class="user-stat-item">
+                    <div class="user-stat-value">2,847</div>
+                    <div class="user-stat-label">Total Users</div>
                 </div>
-
-                <div class="user-stats-grid">
-                    <div class="user-stat-item">
-                        <div class="user-stat-value">2,847</div>
-                        <div class="user-stat-label">Total Users</div>
-                    </div>
-                    <div class="user-stat-item">
-                        <div class="user-stat-value">1,234</div>
-                        <div class="user-stat-label">Active Users</div>
-                    </div>
-                    <div class="user-stat-item">
-                        <div class="user-stat-value">156</div>
-                        <div class="user-stat-label">New Users</div>
-                    </div>
-                    <div class="user-stat-item">
-                        <div class="user-stat-value">43.5%</div>
-                        <div class="user-stat-label">Engagement Rate</div>
-                    </div>
+                <div class="user-stat-item">
+                    <div class="user-stat-value">1,234</div>
+                    <div class="user-stat-label">Active Users</div>
+                </div>
+                <div class="user-stat-item">
+                    <div class="user-stat-value">156</div>
+                    <div class="user-stat-label">New Users</div>
+                </div>
+                <div class="user-stat-item">
+                    <div class="user-stat-value">43.5%</div>
+                    <div class="user-stat-label">Engagement Rate</div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>
